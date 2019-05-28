@@ -5,6 +5,7 @@ library(expsmooth)
 library(forecast)
 library(tseries)
 library(fpp2)
+library(zoo)
 
 # La regresión empleando el modelo ARIMA se realizará sobre el contaminante NO2. Para las estaciones:
 # 4,8,11,35,38,39,48,49,50
@@ -28,9 +29,9 @@ for (fest in Estaciones){
  # Se realiza el modelo que consiste en una descomposición Loess + autoarima
  data_forecast <- stlf(data,method="arima",h=horizon,s.window="periodic",robust=TRUE,level=c(95),lambda = "auto")
  # Tanto la serie de datos como la serie de predicción se pasan a dataframe
- df_data <- data.frame(FECHA=round_date(date_decimal(index(data)),unit='hour'),punto=as.matrix(data))
+ df_data <- data.frame(FECHA=round_date(date_decimal(index(data)),unit='hour'),punto=as.numeric(data))
  dataforecast_time <- as.numeric(time(data_forecast$mean)) %>% date_decimal() %>% round_date(unit='hour')
- df_dataforecast <- data.frame(FECHA=dataforecast_time,punto=as.matrix(data_forecast$mean))
+ df_dataforecast <- data.frame(FECHA=dataforecast_time,punto=as.numeric(data_forecast$mean))
  # Se unen ambos dataframe para tener los datos completos de esa estación para ese contaminante
  station_forecast <- rbind(df_data,df_dataforecast)
  names(station_forecast)[names(station_forecast)=="punto"] <- punto
@@ -41,3 +42,5 @@ for (fest in Estaciones){
    NO2 <- merge(NO2,station_forecast,by="FECHA")
  }
 }
+
+write.csv(NO2,"./data/NO2_estaciones.csv",quote=F,row.names=F)
