@@ -162,7 +162,7 @@ CalidadAire <- CalidadAire[order(CalidadAire$ESTACION,CalidadAire$FECHA),]
 write.csv(CalidadAire,"./data/CalidadAire.csv",quote=F,row.names=F)
 
 # Se va a "extraer" los datos de cada estación y se van a alojar en un csv por estación
-Estaciones <- c(4,8,11,35,38,39,48,49,50)
+Estaciones <- c(4,8,11,35,38,39,47,48,49,50)
 for (e in Estaciones){#unique(CalidadAire$ESTACION)){
     name <- paste("Calidad_Estacion", e, sep = "")
     Estacion <- CalidadAire %>% filter(ESTACION==e) %>% remove_outliers() %>% select(FECHA,SO2,NO2,PM2.5,PM10,O3)

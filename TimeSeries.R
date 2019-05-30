@@ -12,7 +12,7 @@ library(zoo)
 
 # Se crea la serie temporal, cogiendo las columnas que nos interesan e indicando el año de inicio y la 
 # frecuencia que es nuestro caso son las horas anuales
-Estaciones <- c(4,8,11,35,38,39,48,49,50)
+Estaciones <- c(4,8,11,35,38,39,47,48,49,50)
 horizon <- 24*365
 NO2 <- data.frame("FECHA"=as.POSIXlt(character()))
 
