@@ -10,12 +10,18 @@ El resultado de este proyecto es la visulación de la contaminación con el fin 
 ## Metodología ##
 
 ### Adquisición de datos
- [`ScrappingFile.ipynb`](ScrappingFile.ipynb)
+La información de la contaminación horaria es obtenida del portal web del ayuntamiento de Madrid X-X-X-X. Esta información es recopilada automáticamente mediante la técnica conocida en inglés como web scrapping. El resultado son ficheros .txt con los datos de contaminación de todas las estaciones de medición de contaminantes del ayuntamiento de Madrid. Este proceso se ha realizado empleando python. 
+
+[`ScrappingFile.ipynb`](ScrappingFile.ipynb)
  
 ### Analisis exploratorio y limpieza de los datos
- [`TFM.Rproj`](TFM.Rproj) [`data_cleansing.R`](data_cleansing.R)
+La información extraida de la página web
+
+[`TFM.Rproj`](TFM.Rproj) [`data_cleansing.R`](data_cleansing.R)
 
 ### Modelling
+
+
 [`TimeSeries.R`](TimeSeries.R)
 
 ### Data analysis and visualization
