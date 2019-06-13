@@ -1,4 +1,3 @@
-
 library(lubridate)
 library(dplyr)
 library(tidyr)
@@ -36,15 +35,15 @@ archivos <- list.files(path = "./data/source", pattern = ".txt", all.files = F,
 
 data_transformation <- function (dato){
   
-  ## Esta función tiene por objetivo realizar la limpieza y la adaptación de los conjuntos de datos de 
-  ## calidad del aire para estandarizarlos y poder, más tarde, unirlos
+  # Esta función tiene por objetivo realizar la limpieza y la adaptación de los conjuntos de datos de 
+  # calidad del aire para estandarizarlos.
   
+  #Se definen el nombre y la clase de cada una de las series que tendrá el dataframe
   columnas <- c("PROVINCIA",'MUNICIPIO','ESTACION','MAGNITUD','TECNICA','PERIODO_ANALISIS','ANO','MES','DIA','H01','V01','H02','V02','H03','V03','H04','V04','H05','V05','H06','V06','H07','V07','H08','V08','H09','V09','H10','V10','H11','V11','H12','V12','H13','V13','H14','V14','H15','V15','H16','V16','H17','V17','H18','V18','H19','V19','H20','V20','H21','V21','H22','V22','H23','V23','H24','V24')
   Classes <- c(rep("integer",9),rep(c("numeric","character"),each=1,len=48))
   
-  #he quitado colClasses y añadido fill=T
+  #Se aloja los datos en un dataframe 
   df <- read.table(dato, header=FALSE, sep = ",", dec=".", fill=TRUE,col.names = columnas,colClasses = Classes ) %>% as.data.frame()
-  
   
   # Se añade una columna FECHA que agrupa el año, el mes y el día.
   df <-  df %>% unite(FECHA,c("ANO","MES","DIA"),sep="_",remove=TRUE)
@@ -87,14 +86,13 @@ data_transformation <- function (dato){
   names(df)[names(df)=="Contaminacion.9"] <- "PM2.5"
   names(df)[names(df)=="Contaminacion.10"] <- "PM10"
   names(df)[names(df)=="Contaminacion.14"] <- "O3"
-
+  
+  # Se separa la columna de los contaminantes en dos, una de valores y otra de la validez del dato
   df <- separate(df,SO2,c("SO2","SO2_Valido"),sep="_",remove=TRUE,convert = TRUE)
   df <- separate(df,NO2,c("NO2","NO2_Valido"),sep="_",remove=TRUE,convert = TRUE)
   df <- separate(df,PM2.5,c("PM2.5","PM2.5_Valido"),sep="_",remove=TRUE,convert = TRUE)
   df <- separate(df,PM10,c("PM10","PM10_Valido"),sep="_",remove=TRUE,convert = TRUE)
   df <- separate(df,O3,c("O3","O3_Valido"),sep="_",remove=TRUE,convert = TRUE)
-  
-  
   
   return(df)
 }
@@ -103,9 +101,10 @@ data_transformation <- function (dato){
 # En el siguiente bucle se va a leer si el valor de cada contaminante (Cont) ha sido registrado correctamente
 # valido ("V") o no ("N"). Y se va a sobreescribir el valor no válido según varias casuisticas 
 #funcion para quitar outliers y n 
+
 remove_outliers <- function(Station){
-  ## Esta función tiene por objetivo realizar la limpieza y la adaptación de los conjuntos de datos de 
-  ## calidad del aire para estandarizarlos y poder, más tarde, unirlos
+  # Esta función tiene por objetivo realizar la limpieza y la adaptación de los conjuntos de datos de 
+  # calidad del aire para estandarizarlos y poder, más tarde, unirlos
   
   for (Mag in c("SO2","NO2","PM2.5","PM10","O3")){
     print(Mag)
@@ -144,8 +143,6 @@ remove_outliers <- function(Station){
   return(Station)
 }
 
-
-
 # Alojo la información tratado por la función "data_transformation" en el df CalidadAire, lo ordeno por
 # estación y fecha, y lo guardo en la carpeta ./data con formato CSV 
 for(i in archivos){
@@ -155,14 +152,12 @@ for(i in archivos){
 
 CalidadAire <- CalidadAire[order(CalidadAire$ESTACION,CalidadAire$FECHA),]
 
-
-
 #### Export ####
 
 write.csv(CalidadAire,"./data/CalidadAire.csv",quote=F,row.names=F)
 
 # Se va a "extraer" los datos de cada estación y se van a alojar en un csv por estación
-Estaciones <- c(4,8,11,35,38,39,47,48,49,50)
+Estaciones <- c(4,8,11,16,18,35,36,38,39,40,47,48,49,50,56)
 for (e in Estaciones){#unique(CalidadAire$ESTACION)){
     name <- paste("Calidad_Estacion", e, sep = "")
     Estacion <- CalidadAire %>% filter(ESTACION==e) %>% remove_outliers() %>% select(FECHA,SO2,NO2,PM2.5,PM10,O3)
@@ -217,11 +212,3 @@ for (Est in unique(CalidadAire$ESTACION)){
     }
   }
 }
-
-
-
-# ya tengo los datos de calidad del aire pero hay algunas estaciones que no recogen todos los datos,
-# qué hacer entonces? 
-#   - realizar interpolación entre datos comunes?
-#   - realizar interpolación por cada contaminante, sacar ICA y luego realizar la predicción con ARIMA 
-#     para los siguientes meses
