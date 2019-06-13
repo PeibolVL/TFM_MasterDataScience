@@ -26,3 +26,7 @@ La información extraida de la página web
 
 ### Data analysis and visualization
 
+### Especificaciones del software
+R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
