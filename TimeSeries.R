@@ -28,7 +28,12 @@ for (fest in Estaciones){
  data <- ts(get(station)[,c(3)],start = fechainicio, end=fechafinal,frequency = 8760)
  
  # Se realiza el modelo que consiste en una descomposición Loess + autoarima
+ data %>% mstl() %>% autoplot()
+ 
  data_forecast <- stlf(data,method="arima",h=horizon,s.window="periodic",robust=TRUE,level=c(95),lambda = "auto")
+ 
+ checkresiduals(data_forecast)
+ 
  
  # Tanto la serie de datos como la serie de predicción se pasan a dataframe
  df_data <- data.frame(FECHA=round_date(date_decimal(index(data)),unit='hour'),punto=as.numeric(data))
