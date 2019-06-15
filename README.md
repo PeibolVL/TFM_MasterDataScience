@@ -20,25 +20,31 @@ Para la limpieza de los datos se empleará el fichero [`data_cleansing.R`](data_
 
 |Estacion|Fecha|SO<sub>2</sub>|NO<sub>2</sub>|PM<sub>2.5</sub>|PM<sub>10</sub>|O<sub>3</sub>|
 |--------|-----|---|---|-----|----|--|
-|nº|aaaa-mm-dd hh|[ppm]|[ppm]|[ppm]|[ppm]|[ppm]|
+|nº|aaaa-mm-dd hh|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|
 
 Analizando las estaciones se observa que no todas ellas miden todos los contaminantes,por lo que se trabajará con los puntos de medida que recojan el NO<sub>2</sub>, que es el agente mayormente recogido por las estaciones, y será el que se emplee en la predicción.
 
 [`TFM.Rproj`](TFM.Rproj) 
 
-### Modelling
+### Modelización
 El modelo predictivo se realiza utilizando la técnica de regresión ARIMA. Se emplea la descomposición Loes, debido a la gran estacionalidad de los datos y la salida de esta descomposición se introduce en el modelo auto-ARIMA. 
 
 El resultado es un modelo aplicado a cada una de las estaciones del estudio y recogido en un dataframe para su posterior analisis visual
 
 [`TimeSeries.R`](TimeSeries.R)
 
-### Data analysis and visualization
+### Analisis y visualización
 
 Al tener ya los valores de las predicciones, se procede a la visualización de estos. Para ello se guardan todas estaciones con su localización (latitud y longitud) y sus valores de datos contaminantes. Con esta información, se creará una malla que recoja una gran superficie de la ciudad de Madrid, y se interpolará la información de contaminación conocidad de las estaciones para obtener la contaminación en cada punto.
 
 
 ### Especificaciones del software
-R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
-Copyright (C) 2018 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
+#### Lenguajes de programación e interpretes
+Linux shell 
+Python - 
+R - R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+Tableau - 2019.2.0 de 64 bits
+
+#### Hardware
+MacBook Pro (Late 2011) 2,4 GHz Intel Core i5, 8 GB 1333 MHz DDR3, SSD 500 GB
+
