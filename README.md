@@ -20,7 +20,7 @@ Para la limpieza de los datos se empleará el fichero [`data_cleansing.R`](data_
 
 |Estacion|Fecha|SO<sub>2</sub>|NO<sub>2</sub>|PM<sub>2.5</sub>|PM<sub>10</sub>|O<sub>3</sub>|
 |--------|-----|---|---|-----|----|--|
-|nº|aaaa-mm-dd hh|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|[\mu g/m<sup>3</sup>]|
+|nº|aaaa-mm-dd hh|[µg/m<sup>3</sup>]|[µg/m<sup>3</sup>]|[µg/m<sup>3</sup>]|[µg/m<sup>3</sup>]|[µg/m<sup>3</sup>]|
 
 Analizando las estaciones se observa que no todas ellas miden todos los contaminantes,por lo que se trabajará con los puntos de medida que recojan el NO<sub>2</sub>, que es el agente mayormente recogido por las estaciones, y será el que se emplee en la predicción.
 
