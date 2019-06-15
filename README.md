@@ -15,7 +15,7 @@ La información de la contaminación horaria es obtenida del portal web del [Ayu
 El resultado son ficheros de texto con los datos de contaminación de todas las estaciones de medición de contaminantes del ayuntamiento de Madrid. Este proceso se ha realizado empleando python. 
  
 ### Analisis exploratorio y limpieza de los datos
-La información extraida de la página web es cargada en R Studio para ser tratada con el fin de ser la entrada para el modelo de predicción. 
+La información extraida de la página web es cargada en R Studio para ser tratada con el fin de ser la entrada para el modelo de predicción. Se mepleará el proyecto [`TFM.Rproj`](TFM.Rproj) 
 Para la limpieza de los datos se empleará el fichero [`data_cleansing.R`](data_cleansing.R) Este tratamiento de la información de contaminación consistirá en un analisis de las estaciones y una estandarización de estos de forma que se puedan manipular en una dataframe, como en el que se muestra en la siguiente tabla. Debido a que la directiva europea en materia de contaminación estipula unos determinados contaminantes como dañinos, se van a seleccionar aquellos que se utilizan para obtener el Indice de Calidad del Aire (ICA)
 
 |Estacion|Fecha|SO<sub>2</sub>|NO<sub>2</sub>|PM<sub>2.5</sub>|PM<sub>10</sub>|O<sub>3</sub>|
@@ -24,18 +24,17 @@ Para la limpieza de los datos se empleará el fichero [`data_cleansing.R`](data_
 
 Analizando las estaciones se observa que no todas ellas miden todos los contaminantes,por lo que se trabajará con los puntos de medida que recojan el NO<sub>2</sub>, que es el agente mayormente recogido por las estaciones, y será el que se emplee en la predicción.
 
-[`TFM.Rproj`](TFM.Rproj) 
 
 ### Modelización
-El modelo predictivo se realiza utilizando la técnica de regresión ARIMA. Se emplea la descomposición Loes, debido a la gran estacionalidad de los datos y la salida de esta descomposición se introduce en el modelo auto-ARIMA. 
+El modelo predictivo se realiza utilizando la técnica de regresión ARIMA en el archivo [`TimeSeries.R`](TimeSeries.R). Se emplea la descomposición Loes, debido a la gran estacionalidad de los datos y la salida de esta descomposición se introduce en el modelo auto-ARIMA. 
 
 El resultado es un modelo aplicado a cada una de las estaciones del estudio y recogido en un dataframe para su posterior analisis visual
 
-[`TimeSeries.R`](TimeSeries.R)
-
 ### Analisis y visualización
 
-Al tener ya los valores de las predicciones, se procede a la visualización de estos. Para ello se guardan todas estaciones con su localización (latitud y longitud) y sus valores de datos contaminantes. Con esta información, se creará una malla que recoja una gran superficie de la ciudad de Madrid, y se interpolará la información de contaminación conocidad de las estaciones para obtener la contaminación en cada punto.
+Al tener ya los valores de las predicciones, se procede a la visualización de estos. Para ello se guardan en una matriz 3D todas estaciones con su localización (latitud y longitud) y sus valores de datos contaminantes a lo largo del tiempo. 
+
+Con esta información, se creará una malla que recoja una gran superficie de la ciudad de Madrid, y se interpolará la información de contaminación conocidad de las estaciones para obtener la contaminación en cada punto de la malla, que hasta ahora era desconocida.
 
 
 ### Especificaciones del software
