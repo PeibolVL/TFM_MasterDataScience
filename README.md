@@ -5,7 +5,7 @@ Analisis de la contaminación de NO<sub>2</sub> de Madrid
 ## Objetivo ##
 El objeto de este trabajo es el analisis de la contaminación en Madrid adapatado a la [`Orden TEC/351/72019`](state_of_art/Orden_TEC:351:2019.pdf). Para ello se han tomado datos de la contaminación horaria de años anteriores, y se ha predicho la polución a un año vista.
 
-El resultado de este proyecto es la visulación de la contaminación con el fin de explicar la tendecia de la contaminación y la comparación de la polución entre las distintas zonas de la Madrid.
+El resultado de este proyecto es la visulación de la contaminación con el fin de explicar la tendecia de la contaminación y la comparación de la polución entre las distintas zonas de la Madrid mediante un gráfico interactivo.
 
 ## Metodología ##
 
@@ -28,7 +28,7 @@ Analizando las estaciones se observa que no todas ellas miden todos los contamin
 ### Modelización
 El modelo predictivo se realiza utilizando la técnica de regresión ARIMA en el archivo [`TimeSeries.R`](TimeSeries.R). Se emplea la descomposición Loes, debido a la gran estacionalidad de los datos y la salida de esta descomposición se introduce en el modelo auto-ARIMA. 
 
-El resultado es un modelo aplicado a cada una de las estaciones del estudio y recogido en un dataframe para su posterior analisis visual
+El resultado es un modelo aplicado a cada una de las estaciones del estudio y recogido en un dataframe para su posterior analisis visual.
 
 ### Analisis y visualización
 
@@ -51,6 +51,24 @@ RStudio - R version 3.5.2 (2018-12-20)
 
 Tableau - 2019.2.0 de 64 bits
 
+#### Principales librerías
+
+|R|Python|
+|--------|-----|
+|`lubridate`|`os`|
+|`dplyr`|`re`|
+|`tidyr`|`requests`|
+|`stringr`|`urllib.request`|
+|`graphics`|`BeautifulSoup`|
+|`ggplot2`|`ZipFile`|
+|`fma`|`fileinput`|
+|`expsmooth`|`numpy`|
+|`forecast`|`pandas`|
+|`tseries`|`re`|
+|`fpp2`|`SmoothBivariateSpline,interp2d,griddata`|
+|`zoo`|`pyarrow`|
+
+
 #### Hardware
 MacBook Pro (Late 2011) 2,4 GHz Intel Core i5, 8 GB 1333 MHz DDR3, SSD 500 GB
 
@@ -71,4 +89,9 @@ MacBook Pro (Late 2011) 2,4 GHz Intel Core i5, 8 GB 1333 MHz DDR3, SSD 500 GB
 **Visualización**
 
     Tableau Visualizacion.twb
- 
+
+## Acerca del autor
+
+**Pablo Vázquez Lorenzo**
+Technology consultant at Deloitte
+ - https://www.linkedin.com/in/pablovazquezlorenzo
