@@ -15,8 +15,8 @@ La información de la contaminación horaria es obtenida del portal web del [Ayu
 El resultado son ficheros de texto con los datos de contaminación de todas las estaciones de medición de contaminantes del ayuntamiento de Madrid. Este proceso se ha realizado empleando python. 
  
 ### Analisis exploratorio y limpieza de los datos
-La información extraida de la página web es cargada en R Studio para ser tratada con el fin de ser la entrada para el modelo de predicción. Se mepleará el proyecto [`TFM.Rproj`](TFM.Rproj) 
-Para la limpieza de los datos se empleará el fichero [`data_cleansing.R`](data_cleansing.R) Este tratamiento de la información de contaminación consistirá en un analisis de las estaciones y una estandarización de estos de forma que se puedan manipular en una dataframe, como en el que se muestra en la siguiente tabla. Debido a que la directiva europea en materia de contaminación estipula unos determinados contaminantes como dañinos, se van a seleccionar aquellos que se utilizan para obtener el Indice de Calidad del Aire (ICA)
+La información extraida de la página web es cargada en R Studio para ser tratada con el fin de ser la entrada para el modelo de predicción. Se empleará el proyecto [`TFM.Rproj`](TFM.Rproj) 
+Para la limpieza de los datos se utilizará el fichero [`data_cleansing.R`](data_cleansing.R) Este tratamiento de la información de contaminación consistirá en un analisis de las estaciones y una estandarización de estos de forma que se puedan manipular en una dataframe, como en el que se muestra en la siguiente tabla. Debido a que la directiva europea en materia de contaminación estipula unos determinados contaminantes como dañinos, se van a seleccionar aquellos que se utilizan para obtener el Indice de Calidad del Aire (ICA)
 
 |Estacion|Fecha|SO<sub>2</sub>|NO<sub>2</sub>|PM<sub>2.5</sub>|PM<sub>10</sub>|O<sub>3</sub>|
 |--------|-----|---|---|-----|----|--|
@@ -36,7 +36,7 @@ Al tener ya los valores de las predicciones, se procede a la visualización de e
 
 Con esta información, se creará una malla que recoja una gran superficie de la ciudad de Madrid, y se interpolará la información de contaminación conocidad de las estaciones para obtener la contaminación en cada punto de la malla, que hasta ahora era desconocida.
 
-La visuliación de los valores predecidos con el modelo ARIMA para las estaciones deseadas y el mapa de valores de contaminación se podrá visualizar en Tableau en el archivo [`Visualizacion.twb`](Visualizacion.twb)
+La visualización de los valores predecidos con el modelo ARIMA para las estaciones deseadas y el mapa de valores de contaminación se podrá visualizar en Tableau en el archivo [`Visualizacion.twb`](Visualizacion.twb)
 
 ![dashboard](dashboard.png)
 
