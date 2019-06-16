@@ -38,7 +38,7 @@ Con esta información, se creará una malla que recoja una gran superficie de la
 
 La visuliación de los valores predecidos con el modelo ARIMA para las estaciones deseadas y el mapa de valores de contaminación se podrá visualizar en Tableau en el archivo [`Visualizacion.twb`](Visualizacion.twb)
 
-![dashboard](data/dashboard.png)
+![dashboard](dashboard.png)
 
 ### Especificaciones del software
 #### Lenguajes de programación e interpretes
