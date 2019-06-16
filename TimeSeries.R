@@ -1,4 +1,5 @@
-#### Libraries ####
+#### Librerias ####
+
 library(ggplot2)
 library(fma)
 library(expsmooth)
@@ -7,6 +8,8 @@ library(tseries)
 library(fpp2)
 library(zoo)
 
+#### Regresión ####
+
 # La regresión empleando el modelo ARIMA se realizará sobre el contaminante NO2. Para las estaciones:
 # 4,8,11,16,18,35,36,38,39,40,47,48,49,50,56
 
@@ -14,6 +17,7 @@ library(zoo)
 # frecuencia que es nuestro caso son las horas anuales
 Estaciones <- c(4,8,11,16,18,35,36,38,39,40,47,48,49,50,56)
 horizon <- 24*365
+
 NO2 <- data.frame("FECHA"=as.POSIXlt(character()))
 
 for (fest in Estaciones){
@@ -26,7 +30,7 @@ for (fest in Estaciones){
  
  # Se crea una serie temportal del contaminante de la columna 3, que corresponde a NO2
  data <- ts(get(station)[,c(3)],start = fechainicio, end=fechafinal,frequency = 8760)
- 
+
  # Se realiza el modelo que consiste en una descomposición Loess + autoarima
  data %>% mstl() %>% autoplot()
  
