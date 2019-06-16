@@ -36,14 +36,39 @@ Al tener ya los valores de las predicciones, se procede a la visualización de e
 
 Con esta información, se creará una malla que recoja una gran superficie de la ciudad de Madrid, y se interpolará la información de contaminación conocidad de las estaciones para obtener la contaminación en cada punto de la malla, que hasta ahora era desconocida.
 
+La visuliación de los valores predecidos con el modelo ARIMA para las estaciones deseadas y el mapa de valores de contaminación se podrá visualizar en Tableau en el archivo [`Visualizacion.twb`](Visualizacion.twb)
+
+![dashboard](data/dashboard.png)
 
 ### Especificaciones del software
 #### Lenguajes de programación e interpretes
+
 Linux shell 
-Python - 
-R - R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+
+Jupyter Notebook Python - Python 3.6.8 |Anaconda, Inc
+
+RStudio - R version 3.5.2 (2018-12-20)
+
 Tableau - 2019.2.0 de 64 bits
 
 #### Hardware
 MacBook Pro (Late 2011) 2,4 GHz Intel Core i5, 8 GB 1333 MHz DDR3, SSD 500 GB
 
+## Procedimiento de ejecución
+
+**Scrapping y preparación de los datos**
+
+    jupyter-notebook ScrappingFile.ipynb
+
+**Limpiezad de datos y modelo**
+
+    RStudio TFM.Rproj
+
+    RStudio data_cleansing.R
+
+    RStudio TimeSeries.R
+
+**Visualización**
+
+    Tableau Visualizacion.twb
+ 
